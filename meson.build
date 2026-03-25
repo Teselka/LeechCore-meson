@@ -122,6 +122,11 @@ endif
 
 leechcore_includes = include_directories('includes')
 
+install_headers(
+    'includes/leechcore.h',
+    'includes/leechgrpc.h',
+)
+
 leechcore_lib = library(
     'leechcore',
     leechcore_src,
