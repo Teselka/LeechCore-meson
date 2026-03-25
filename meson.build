@@ -125,6 +125,7 @@ leechcore_includes = include_directories('includes')
 install_headers(
     'includes/leechcore.h',
     'includes/leechgrpc.h',
+    'includes/leechcore_device.h',
 )
 
 leechcore_lib = library(

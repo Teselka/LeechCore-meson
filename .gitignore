@@ -20,3 +20,5 @@ leechrpc_s.c
 /files/x86/lib
 /leechcorepyc/pkg_linux
 /files/leechagent
+/includes/vmmdll.h
+/includes/vmmyara.h
