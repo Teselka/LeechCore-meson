@@ -128,6 +128,7 @@ leechcore_lib = library(
     include_directories: leechcore_includes,
     dependencies: leechcore_deps,
     c_args: leechcore_c_args,
+    install: true,
 )
 
 leechcore_dep = declare_dependency(
@@ -187,5 +188,6 @@ if get_option('leechagent')
         leechagent_src,
         dependencies: leechagent_deps,
         c_args: leechcore_c_args,
+        install: true,
     )
 endif
