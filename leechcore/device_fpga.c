@@ -772,9 +772,9 @@ LPSTR DeviceFPGA_InitializeUDP(_In_ PDEVICE_CONTEXT_FPGA ctx, _In_ DWORD dwIpv4A
     }
     ctx->dev.pfnFT_AbortPipe = DeviceFPGA_UDP_FT60x_FT_AbortPipe;
     ctx->dev.pfnFT_Create = NULL;
-    ctx->dev.pfnFT_Close = DeviceFPGA_UDP_FT60x_FT_Close;
-    ctx->dev.pfnFT_ReadPipe = DeviceFPGA_UDP_FT60x_FT_ReadPipe;
-    ctx->dev.pfnFT_WritePipe = DeviceFPGA_UDP_FT60x_FT_WritePipe;
+    ctx->dev.pfnFT_Close = (PFN_FT_Close)&DeviceFPGA_UDP_FT60x_FT_Close;
+    ctx->dev.pfnFT_ReadPipe = (PFN_FT_ReadPipe)&DeviceFPGA_UDP_FT60x_FT_ReadPipe;
+    ctx->dev.pfnFT_WritePipe = (PFN_FT_WritePipe)&DeviceFPGA_UDP_FT60x_FT_WritePipe;
     ctx->dev.fInitialized = TRUE;
     return NULL;
 }
@@ -1067,10 +1067,10 @@ LPSTR DeviceFPGA_InitializeFT2232(_In_ PDEVICE_CONTEXT_FPGA ctx)
         goto fail;
     }
     // Assign FT601 compatibility functions to device object:
-    ctx->dev.pfnFT_AbortPipe = DeviceFPGA_FT2232_FT60x_FT_AbortPipe;
-    ctx->dev.pfnFT_Close = DeviceFPGA_FT2232_FT60x_FT_Close;
-    ctx->dev.pfnFT_ReadPipe = DeviceFPGA_FT2232_FT60x_FT_ReadPipe;
-    ctx->dev.pfnFT_WritePipe = DeviceFPGA_FT2232_FT60x_FT_WritePipe;
+    ctx->dev.pfnFT_AbortPipe = (PFN_FT_AbortPipe)&DeviceFPGA_FT2232_FT60x_FT_AbortPipe;
+    ctx->dev.pfnFT_Close = (PFN_FT_Close)&DeviceFPGA_FT2232_FT60x_FT_Close;
+    ctx->dev.pfnFT_ReadPipe = (PFN_FT_ReadPipe)&DeviceFPGA_FT2232_FT60x_FT_ReadPipe;
+    ctx->dev.pfnFT_WritePipe = (PFN_FT_WritePipe)&DeviceFPGA_FT2232_FT60x_FT_WritePipe;
     // Allocate and assign "extended" ftHandle to device object [free by pfnFT_Close()].
     // Also assign required function pointers.
     if(!(hFT2232H = LocalAlloc(LMEM_ZEROINIT, sizeof(FT2232H_HANDLE)))) {
